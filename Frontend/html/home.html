@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <title>Expense Tracker</title>
+</head>
+<body>
+      <header>
+        <div class="px-3 py-2 text-bg-dark border-bottom">
+          <div class="container-fluid">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+             <div class="logo">
+              <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none fw-bold">
+                <i class="bi bi-currency-euro" style="font-size: 2rem;"></i>
+                Expense Tracker
+              </a>
+            </div>
+              <ul class="nav col-12 col-lg-auto mx-5 my-2 justify-content-end my-md-0 text-small align-items-center mb-3 mb-md-0 me-md-auto left-list">
+                <li class="nav-item">
+                  <a href="#" class="nav-link text-white">
+                    <i class="bi bi-house-door d-block mx-2 mb-1 list-font-style"></i>
+                    Home
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="dashboard.html" class="nav-link text-white">
+                    <i class="bi bi-speedometer2 d-block mx-4 mb-1 list-font-style"></i>
+                    Dashboard
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="report.html" class="nav-link text-white">
+                    <i class="bi bi-file-earmark-bar-graph mx-3 mb-1 d-block list-font-style"></i>
+                    Reports
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="leaderboard.html" class="nav-link text-white" id="leaderboard">       
+                    <i class="bi bi-trophy mx-4 mb-1 d-block list-font-style"></i>
+                    Leaderboard
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav col-12 col-lg-auto mx-5 my-2 justify-content-end my-md-0 text-small right-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" id="purchase-membership">
+                        <i class="bi bi-gem mx-4 mb-1 d-block list-font-style"></i>
+                      Buy Premium
+                    </a>
+                    <p id="premium-msg" class="badge bg-light text-dark mx-4 my-3 fs-6"></p>
+                  </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white" id="logout-link">
+                    <i class="bi bi-box-arrow-right mx-4 mb-1 d-block list-font-style"></i>
+                    Sign out
+                </a>
+                </li>
+              </ul>
+              <div class="hamburger">
+                <i class="bi bi-list toggle-btn" id="mobile-view"></i>
+                <i class="bi bi-x-lg toggle-btn close-btn"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-list" id="vertical-nav">
+        </div>
+      </header>
+      <section>
+        <div class="container">
+          <div class="my-4 bg-dark-subtle py-4 px-3 rounded border-shadow">
+            <form action="#" class=" row g-3 text-center" id="expense-form">
+              <div class="col-md-3">
+                <div class="input-group">
+                <select id="category" class="form-select" required>
+                  <option selected>Select Category</option>
+                  <option value="Mobile & Computers">Mobile & Computers</option>
+                  <option value="Fashion & Beauty">Fashion & Beauty</option>
+                  <option value="Groceries & Pet Supplies">Groceries & Pet Supplies</option>
+                  <option value="Home, Furniture & Appliances">Home, Furniture & Appliances</option>
+                  <option value="Music, Video & Gaming">Music, Video & Gaming</option>
+                  <option value="Books & Education">Books & Education</option>
+                  <option value="Toys, Children & Baby">Toys, Children & Baby</option>
+                  <option value="Payments & Bookings">Payments & Bookings</option>
+                  <option value="Automative">Automative</option>
+                  <option value="Office & Professional">Office & Professional</option>
+                  <option value="Sports, Outdoor & Travel">Sports, Outdoor & Travel</option>
+                  <option value="Gifting">Gifting</option>
+                  <option value="Bills & EMI's">Bills & EMI's</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+              </div>
+              <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text bg-black"><i class="bi bi-receipt text-white"></i></span>
+                <input type="text" id="description" class="form-control" placeholder="Enter description" required>
+              </div>
+            </div>
+              <div class="col-md-3">
+                <div class="input-group">
+                  <span class="input-group-text bg-black"><i class="bi bi-currency-rupee text-white"></i></span>
+                  <input type="number" id="amount" class="form-control" placeholder="Enter amount" required>
+                </div>
+              </div>
+              <div class="col-md-2">
+              <button type="submit" id="expense-btn" class="btn btn-dark rounded">Add Expense</button>
+            </div>
+            </form>
+          </div>
+          <div class="expense-details bg-secondary-subtle p-2 rounded border-shadow table-responsive">
+            <table class="table table-striped my-2">
+              <thead>
+                <tr class="text-center">
+                  <th><i class="bi bi-calendar3 table-heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Date"></i></th>
+                  <th><i class="bi bi-list-task table-heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Category"></i></th>
+                  <th><i class="bi bi-receipt table-heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Description"></i></th>
+                  <th><i class="bi bi-currency-rupee table-heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Amount"></i></th>
+                  <th><i class="bi bi-gear table-heading" data-bs-toggle="tooltip" data-bs-placement="top" title="Actions"></i></th>
+                </tr>
+              </thead>
+              <tbody class="text-center" id="expense-table-body">
+              </tbody>
+            </table>
+            <div class="row">
+              <div class="col-md-6 d-flex align-items-center mb-2">
+                <p class="m-0 me-2">No. of records:</p>
+                <select id="records" class="form-select w-auto">
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="40">40</option>
+                </select>
+                <p class="m-0 ms-2">per page</p>
+              </div>
+              <div id="pagination" class="col-md-6 d-flex justify-content-end align-items-center"></div>
+            </div>         
+        </div> 
+        </div>
+      </section>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+      <script src="../js/home.js"></script>
+      <script src="../js/logout.js"></script>
+      <script src="../js/toggle.js"></script>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      <script src="../js/purchaseMembership.js"></script>
+</body>
+</html>
